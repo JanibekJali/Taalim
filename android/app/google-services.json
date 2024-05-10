@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1046231516159",
+    "project_id": "taalim-f3f0d",
+    "storage_bucket": "taalim-f3f0d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046231516159:android:3a3b3d7a3c8f9bffd91dca",
+        "android_client_info": {
+          "package_name": "com.example.taalim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGVCWNfE0YjfEoBJ4fkTEwEOGgh3Hw2qM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

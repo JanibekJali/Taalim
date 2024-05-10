@@ -1,0 +1,65 @@
+name: taalim
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.6
+  shared_preferences: ^2.2.3
+  http: ^1.2.1
+  dio: ^5.4.3+1
+  image_picker: ^1.1.1
+  google_fonts: ^6.2.1
+  flutter_bloc: ^8.1.5
+  go_router: ^14.0.2
+  firebase_auth: ^4.19.5
+  firebase_storage: ^11.7.5
+  firebase_core: ^2.31.0
+  cloud_firestore: ^4.17.3
+  interpolate_animated: ^0.0.1
+  equatable: ^2.0.5
+  flutter_svg: ^2.0.10+1
+  url_launcher: ^6.2.6
+ 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^3.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+ 
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: NunitoSans
+      fonts:
+        - asset: assets/fonts/NunitoSans_10pt-Bold.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+
