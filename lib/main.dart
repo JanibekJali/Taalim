@@ -1,13 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:taalim/firebase_options.dart';
+import 'package:taalim/src/core/ui/theme/app_theme.dart';
+import 'package:taalim/src/presentation/home/home_view.dart';
 import 'package:taalim/src/presentation/welcome/welcome_view.dart';
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const Taalim());
 }
 
@@ -16,6 +18,13 @@ class Taalim extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home:WelcomeView() ,);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: WelcomeView(),
+
+      // title: 'University',
+      //       theme: getAppTheme(),
+      //       onGenerateRoute: AppRoutersFunc.onGenerateRoute,
+    );
   }
 }
