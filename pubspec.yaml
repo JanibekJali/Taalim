@@ -31,6 +31,7 @@ dependencies:
   equatable: ^2.0.5
   flutter_svg: ^2.0.10+1
   url_launcher: ^6.2.6
+  flutter_native_splash: ^2.4.0
  
 
 dev_dependencies:
@@ -62,4 +63,10 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
+flutter_native_splash:
+  android_12:
+  background_image: assets/icons/fotoTalim.png
+    
+  
 
