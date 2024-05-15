@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:taalim/firebase_options.dart';
+import 'package:taalim/src/core/navigation/app_routes.dart';
 import 'package:taalim/src/core/ui/theme/app_theme.dart';
 import 'package:taalim/src/presentation/home/home_view.dart';
 import 'package:taalim/src/presentation/welcome/welcome_view.dart';
@@ -18,9 +19,9 @@ class Taalim extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeView(),
+      onGenerateRoute: AppRoutersFunction.onGenerateRoute,
 
       // title: 'University',
       //       theme: getAppTheme(),
