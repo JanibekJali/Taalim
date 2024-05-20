@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
+import 'package:taalim/src/presentation/books/book_choice/book_choice_view.dart';
 import 'package:taalim/src/presentation/books/books_view.dart';
 import 'package:taalim/src/presentation/dua/duas_view.dart';
 import 'package:taalim/src/presentation/home/home_view.dart';
+import 'package:taalim/src/presentation/names-of-allah/names_of_allah_view.dart';
+import 'package:taalim/src/presentation/question-answer/question_answer_view.dart';
 import 'package:taalim/src/presentation/welcome/welcome_view.dart';
 
 class AppRoutersFunction {
@@ -30,10 +33,31 @@ class AppRoutersFunction {
           },
           settings: settings,
         );
+      case AppRoutesPath.booksChoice:
+        return CupertinoPageRoute(
+          builder: (_) {
+            return const BookChoiceView();
+          },
+          settings: settings,
+        );
       case AppRoutesPath.dua:
         return CupertinoPageRoute(
           builder: (_) {
             return const DuasView();
+          },
+          settings: settings,
+        );
+      case AppRoutesPath.questionAnswer:
+        return CupertinoPageRoute(
+          builder: (_) {
+            return const QuestionAnswerView();
+          },
+          settings: settings,
+        );
+      case AppRoutesPath.namesOfAllah:
+        return CupertinoPageRoute(
+          builder: (_) {
+            return const NamesOfAllahView();
           },
           settings: settings,
         );

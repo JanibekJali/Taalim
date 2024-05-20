@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/texts/app_text.dart';
-import 'package:taalim/src/core/ui/theme/app_colors.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
 import 'package:taalim/src/data/local/list_names.dart';
@@ -41,7 +38,9 @@ class HomeView extends StatelessWidget {
                 text: ListNames.homeViewNames[index],
                 onTap: () {
                   Navigator.pushNamed(
-                      context, ListOfView.homeViewListindex[index]);
+                    context,
+                    ListOfView.homeViewListindex[index],
+                  );
                 },
               );
             },
