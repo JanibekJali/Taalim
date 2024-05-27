@@ -19,7 +19,7 @@ class BookChoiceView extends StatelessWidget {
         toolbarHeight: 100,
         centerTitle: true,
         title: Text(
-          ListNames.bookViewNames.toString(),
+          ListNames.bookViewNames[0].toString(),
           style: AppTextStyle.blue24Bold,
           textAlign: TextAlign.center,
         ),

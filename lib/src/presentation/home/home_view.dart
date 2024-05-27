@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/src/core/ui/texts/app_text.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
 import 'package:taalim/src/data/local/list_names.dart';
 import 'package:taalim/src/data/local/list_of_view.dart';
+import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -37,6 +39,9 @@ class HomeView extends StatelessWidget {
                 height: height,
                 text: ListNames.homeViewNames[index],
                 onTap: () {
+                  if (index == 0) {
+                    context.read<BooksCubit>().getBookData();
+                  }
                   Navigator.pushNamed(
                     context,
                     ListOfView.homeViewListindex[index],

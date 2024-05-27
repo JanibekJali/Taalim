@@ -1,10 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/firebase_options.dart';
 import 'package:taalim/src/core/navigation/app_routes.dart';
-import 'package:taalim/src/core/ui/theme/app_theme.dart';
-import 'package:taalim/src/presentation/home/home_view.dart';
-import 'package:taalim/src/presentation/welcome/welcome_view.dart';
+import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,13 +18,18 @@ class Taalim extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: AppRoutersFunction.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => BooksCubit()),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: AppRoutersFunction.onGenerateRoute,
 
-      // title: 'University',
-      //       theme: getAppTheme(),
-      //       onGenerateRoute: AppRoutersFunc.onGenerateRoute,
+        // title: 'University',
+        //       theme: getAppTheme(),
+        //       onGenerateRoute: AppRoutersFunc.onGenerateRoute,
+      ),
     );
   }
 }
