@@ -13,11 +13,7 @@ class FirebaseData {
           .collection(FirebaseCollection.books)
           .get();
       for (var book in response.docs) {
-        books.add(
-          BookModel.fromMap(
-            book.data(),
-          ),
-        );
+        books.add(BookModel.fromMap(book.data()));
       }
       return books;
     } catch (e) {
@@ -25,4 +21,5 @@ class FirebaseData {
       throw ServerException(e.toString());
     }
   }
+  
 }
