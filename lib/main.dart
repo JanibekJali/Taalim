@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/firebase_options.dart';
 import 'package:taalim/src/core/navigation/app_routes.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
+import 'package:taalim/src/presentation/names-of-allah/Cubit/SaveCubit/SaveCubit.dart';
+import 'package:taalim/src/presentation/names-of-allah/Cubit/SubCubit/SubCubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +23,15 @@ class Taalim extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => BooksCubit()),
+          BlocProvider<SubCubit>(
+          create: (context) => SubCubit(),
+        ),
+        BlocProvider<SaveCubit>(
+          create: (context) => SaveCubit(),
+        ),
       ],
-      child: const MaterialApp(
+      child: const 
+      MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRoutersFunction.onGenerateRoute,
 
