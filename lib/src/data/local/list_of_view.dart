@@ -1,7 +1,7 @@
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 
-class ListOfView {
-  static const homeViewListindex = [
+class ListViewRoutes {
+  static const homeViewRoutes = [
     AppRoutesPath.books,
     AppRoutesPath.dua,
     AppRoutesPath.questionAnswer,

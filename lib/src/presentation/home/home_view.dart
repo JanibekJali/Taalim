@@ -44,7 +44,7 @@ class HomeView extends StatelessWidget {
                   }
                   Navigator.pushNamed(
                     context,
-                    ListOfView.homeViewListindex[index],
+                    ListViewRoutes.homeViewRoutes[index],
                   );
                 },
               );

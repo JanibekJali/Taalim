@@ -5,7 +5,6 @@ import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/texts/app_text.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
-import 'package:taalim/src/data/local/list_names.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class BooksView extends StatelessWidget {
@@ -46,7 +45,7 @@ class BooksView extends StatelessWidget {
                     return ContainerTextWidget(
                       width: width,
                       height: height,
-                      text: state.bookModel![0].fikh,
+                      text: state.bookModel![index].bookName,
                       onTap: () {
                         Navigator.pushNamed(
                           context,
