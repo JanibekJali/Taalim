@@ -1,9 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:taalim/src/presentation/music_and_shaer/music_view/model/music_model.dart';
 import 'package:taalim/src/presentation/music_and_shaer/music_view/music_cubit/music_cubit.dart';
 
 class MusicView extends StatefulWidget {
@@ -61,7 +61,7 @@ class _MusicViewState extends State<MusicView> {
             if (state is MusicLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is MusicInitial) {
-              return musicResult(state.musicDocuments);
+              return musicResult(state.musicList);
             } else if (state is MusicError) {
               return Center(
                 child: Text('Error: ${state.error}'),
@@ -77,13 +77,13 @@ class _MusicViewState extends State<MusicView> {
     );
   }
 
-  Widget musicResult(List<QueryDocumentSnapshot> musicDocs) {
+  Widget musicResult(List<MusicModel> musicList) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
       child: ListView.builder(
-        itemCount: musicDocs.length,
+        itemCount: musicList.length,
         itemBuilder: (context, index) {
-          final musicDoc = musicDocs[index];
+          final music = musicList[index];
           return Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(35),
@@ -96,7 +96,7 @@ class _MusicViewState extends State<MusicView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      musicDoc['musicName'],
+                      music.name,
                       style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w300,
@@ -108,7 +108,7 @@ class _MusicViewState extends State<MusicView> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        await _downloadMusic(musicDoc['musicUrl']);
+                        await _downloadMusic(music.musicUrl);
                       },
                       icon: const Icon(Icons.download),
                     ),
@@ -116,8 +116,8 @@ class _MusicViewState extends State<MusicView> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    if (_currentMusicUrl != musicDoc['musicUrl']) {
-                      _currentMusicUrl = musicDoc['musicUrl'];
+                    if (_currentMusicUrl != music.musicUrl) {
+                      _currentMusicUrl = music.musicUrl;
                       try {
                         if (_downloadedMusicPath != null) {
                           await _audioPlayer

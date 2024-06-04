@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/firebase_options.dart';
 import 'package:taalim/src/core/navigation/app_routes.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
+import 'package:taalim/src/presentation/music_and_shaer/music_view/music_cubit/music_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ class Taalim extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => BooksCubit()),
+        BlocProvider(create: (context) => MusicCubit()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,

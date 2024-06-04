@@ -5,19 +5,19 @@ abstract class MusicState {}
 class MusicLoading extends MusicState {}
 
 class MusicInitial extends MusicState {
-  final List<QueryDocumentSnapshot> musicDocuments;
+  final List<MusicModel> musicList;
 
-  MusicInitial({required this.musicDocuments});
+  MusicInitial({required this.musicList});
 }
 
 class MusicPlaying extends MusicState {
   final String musicUrl;
   final Duration duration;
   final Duration position;
-  final List<QueryDocumentSnapshot> musicDocuments;
+  final List<MusicModel> musicList;
 
   MusicPlaying(
-    this.musicDocuments, {
+    this.musicList, {
     required this.musicUrl,
     required this.duration,
     required this.position,

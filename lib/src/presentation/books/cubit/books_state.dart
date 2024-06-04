@@ -5,10 +5,13 @@ class BooksState extends Equatable {
     this.fetchStatus = FetchStatus.loading,
     this.bookModel,
   });
+
   final FetchStatus fetchStatus;
   final List<BookModel>? bookModel;
+
   @override
   List<Object?> get props => [fetchStatus, bookModel];
+
   BooksState copyWith({
     FetchStatus? fetchStatus,
     List<BookModel>? bookModel,
