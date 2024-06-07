@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/presentation/books/book_choice/book_choice_view.dart';
 import 'package:taalim/src/presentation/books/books_view.dart';
-import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 import 'package:taalim/src/presentation/dua/duas_view.dart';
 import 'package:taalim/src/presentation/home/home_view.dart';
 import 'package:taalim/src/presentation/names-of-allah/names_of_allah_view.dart';
@@ -24,10 +21,7 @@ class AppRoutersFunction {
       case AppRoutesPath.home:
         return CupertinoPageRoute(
           builder: (_) {
-            return BlocProvider(
-              create: (context) => BooksCubit(),
-              child: const HomeView(),
-            );
+            return const HomeView();
           },
           settings: settings,
         );

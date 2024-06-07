@@ -5,6 +5,8 @@ import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/texts/app_text.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
+import 'package:taalim/src/core/ui/widgets/nav_bar/bottom_nav_bar.dart';
+import 'package:taalim/src/presentation/books/book_choice/cubit/book_choice_cubit.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class BooksView extends StatelessWidget {
@@ -47,16 +49,20 @@ class BooksView extends StatelessWidget {
                       height: height,
                       text: state.bookModel![index].bookName,
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutesPath.booksChoice,
-                        );
+                        if (index == 0) {
+                          context.read<BookChoiceCubit>().getBookChoiceData();
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutesPath.booksChoice,
+                          );
+                        }
                       },
                     );
                   },
                 ),
               ],
             ),
+            bottomNavigationBar: const BottomNavBarWidget(),
           );
         } else {
           return const Center(child: Text('Maalymat Jok'));

@@ -4,17 +4,19 @@ import 'package:taalim/src/core/enums/fetch_status.dart';
 import 'package:taalim/src/core/exception/server_exception.dart';
 import 'package:taalim/src/data/firebase/firebase_data.dart';
 import 'package:taalim/src/data/model/book_model.dart';
-part 'book_choice_state.dart';
+import 'package:taalim/src/data/model/dua_model.dart';
 
-class BookChoiceCubit extends Cubit<BookChoiceState> {
-  BookChoiceCubit() : super(const BookChoiceState());
-  Future getBookChoiceData() async {
+part 'dua_state.dart';
+
+class DuaCubit extends Cubit<DuaState> {
+  DuaCubit() : super(DuaState());
+  Future getDuaData() async {
     try {
       emit(state.copyWith(status: FetchStatus.loading));
-      final response = await FirebaseData.getBookChoiceDataFromFirebase();
+      final response = await FirebaseData.getDuaDataFromFirebase();
       if (response != null) {
         emit(
-          state.copyWith(status: FetchStatus.success, bookModel: response),
+          state.copyWith(status: FetchStatus.success, duaModel: response),
         );
       } else {
         emit(
