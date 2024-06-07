@@ -24,10 +24,7 @@ class AppRoutersFunction {
       case AppRoutesPath.home:
         return CupertinoPageRoute(
           builder: (_) {
-            return BlocProvider(
-              create: (context) => BooksCubit(),
-              child: const HomeView(),
-            );
+            return const HomeView();
           },
           settings: settings,
         );
@@ -48,7 +45,7 @@ class AppRoutersFunction {
       case AppRoutesPath.dua:
         return CupertinoPageRoute(
           builder: (_) {
-            return const DuasView();
+            return const DuaView();
           },
           settings: settings,
         );
