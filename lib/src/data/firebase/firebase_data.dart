@@ -59,4 +59,22 @@ class FirebaseData {
       throw ServerException(e.toString());
     }
   }
+
+  static Future<List<BookModel>?> getKuranDuaDataFromFirebase() async {
+    try {
+      final books = <BookModel>[];
+      final response = await FirebaseFirestore.instance
+          .collection(FirebaseCollection.dualar)
+          .where(FirebaseCollection.kuranDua)
+          .get();
+      for (final element in response.docs) {
+        books.add(BookModel.fromMap(element.data()));
+      }
+      // log('resBookData -> ${books[0].fikh}');
+      return books;
+    } catch (e) {
+      log('Error fetching book data: $e');
+      throw ServerException(e.toString());
+    }
+  }
 }

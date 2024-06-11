@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
-import 'package:taalim/src/core/ui/theme/app_colors.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/cubit/bottom_nav_bar_cubit.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
@@ -16,7 +14,6 @@ class BottomNavBarWidget extends StatelessWidget {
           currentIndex: state.selectedIndex!,
           selectedItemColor: Colors.red,
           // unselectedItemColor: AppColors.grayIcon,
-          type: BottomNavigationBarType.fixed,
           onTap: (value) {
             if (value == 0) {
               Navigator.pushNamed(context, AppRoutesPath.home);
