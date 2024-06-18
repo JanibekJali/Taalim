@@ -43,10 +43,12 @@ class ContainerTextWidget extends StatelessWidget {
             height: height * 0.09,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2),
-                child: Text(
-                  text,
-                  style: AppTextStyle.blue18Bold,
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+                child: FittedBox(
+                  child: Text(
+                    text,
+                    style: AppTextStyle.blue18Bold,
+                  ),
                 ),
               ),
             ),

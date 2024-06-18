@@ -10,20 +10,20 @@ part 'dua_state.dart';
 
 class DuaCubit extends Cubit<DuaState> {
   DuaCubit() : super(const DuaState());
-  Future getDua() async {
-    try {
-      emit(state.copyWith(status: FetchStatus.loading));
-      final response =
-          await FirebaseData.getDuaDataFromFirebase(FirebaseCollection.dualar);
-      if (response != null) {
-        emit(state.copyWith(status: FetchStatus.success, duaModel: response));
-      } else {
-        emit(
-          state.copyWith(status: FetchStatus.error),
-        );
-      }
-    } catch (e) {
-      throw ServerException('$e');
-    }
-  }
+  // Future getDua() async {
+  //   try {
+  //     emit(state.copyWith(status: FetchStatus.loading));
+  //     final response =
+  //         await FirebaseData.getDuaDataFromFirebase(FirebaseCollection.dualar);
+  //     if (response != null) {
+  //       emit(state.copyWith(status: FetchStatus.success, duaModel: response));
+  //     } else {
+  //       emit(
+  //         state.copyWith(status: FetchStatus.error),
+  //       );
+  //     }
+  //   } catch (e) {
+  //     throw ServerException('$e');
+  //   }
+  // }
 }
