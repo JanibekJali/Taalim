@@ -7,6 +7,7 @@ import 'package:taalim/src/data/local/list_names.dart';
 import 'package:taalim/src/data/local/list_of_view.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 import 'package:taalim/src/presentation/dua/cubit/dua_cubit.dart';
+import 'package:taalim/src/presentation/question-answer/cubit/question_answer_cubit.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -45,6 +46,9 @@ class HomeView extends StatelessWidget {
                   }
                   if (index == 1) {
                     context.read<DuaCubit>().getDua();
+                  }
+                  if (index == 2) {
+                    context.read<QuestionAnswerCubit>().getQuestionAnswer();
                   }
                   Navigator.pushNamed(
                     context,
