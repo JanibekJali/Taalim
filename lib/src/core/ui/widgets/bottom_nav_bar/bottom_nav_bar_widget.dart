@@ -11,27 +11,9 @@ class BottomNavBarWidget extends StatelessWidget {
     return BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
       builder: (context, state) {
         return BottomNavigationBar(
-          unselectedItemColor: Colors.grey,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.face),
-              label: 'School',
-            ),
-          ],
           currentIndex: state.selectedIndex!,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Colors.red,
+          // unselectedItemColor: AppColors.grayIcon,
           onTap: (value) {
             if (value == 0) {
               Navigator.pushNamed(context, AppRoutesPath.home);
@@ -47,6 +29,24 @@ class BottomNavBarWidget extends StatelessWidget {
             // }
             context.read<BottomNavBarCubit>().onItemTapped(value);
           },
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/homeIcon.png'),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/bookIcon.png'),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/duaIcon.png'),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/icons/favoriteIcon.png'),
+              label: '',
+            ),
+          ],
         );
       },
     );

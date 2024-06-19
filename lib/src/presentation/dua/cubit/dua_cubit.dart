@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:taalim/src/core/enums/fetch_status.dart';
 import 'package:taalim/src/core/exception/server_exception.dart';
+import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/data/firebase/firebase_data.dart';
 import 'package:taalim/src/data/model/dua_model.dart';
 
@@ -12,7 +13,8 @@ class DuaCubit extends Cubit<DuaState> {
   Future getDua() async {
     try {
       emit(state.copyWith(status: FetchStatus.loading));
-      final response = await FirebaseData.getDuaDataFromFirebase();
+      final response =
+          await FirebaseData.getDuaDataFromFirebase(FirebaseCollection.dualar);
       if (response != null) {
         emit(state.copyWith(status: FetchStatus.success, duaModel: response));
       } else {

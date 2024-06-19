@@ -20,7 +20,7 @@ class FirebaseData {
   //     }
   //     // log('resBookData -> ${books[0].fikh}');
   //     return books;
-  //   } catch (e) {
+  //   } catch (e) { x
   //     log('Error fetching book data: $e');
   //     throw ServerException(e.toString());
   //   }
@@ -43,12 +43,14 @@ class FirebaseData {
     }
   }
 
-  static Future<List<DuaModel>?> getDuaDataFromFirebase() async {
+  static Future<List<DuaModel>?> getDuaDataFromFirebase(
+    String collection,
+  ) async {
+    // FirebaseCollection.dualar
     try {
       final dualar = <DuaModel>[];
-      final response = await FirebaseFirestore.instance
-          .collection(FirebaseCollection.dualar)
-          .get();
+      final response =
+          await FirebaseFirestore.instance.collection(collection).get();
       for (var dua in response.docs) {
         dualar.add(DuaModel.fromMap(dua.data()));
       }
@@ -58,6 +60,7 @@ class FirebaseData {
       throw ServerException(e.toString());
     }
   }
+
 
   static Future<List<QuestionAnswerModel>?>
       getQuestionAnswerDataFromFirebase() async {
@@ -70,6 +73,20 @@ class FirebaseData {
         questionAnswer.add(QuestionAnswerModel.fromMap(aalym.data()));
       }
       return questionAnswer;
+
+  static Future<List<BookModel>?> getKuranDuaDataFromFirebase() async {
+    try {
+      final books = <BookModel>[];
+      final response = await FirebaseFirestore.instance
+          .collection(FirebaseCollection.dualar)
+          .where(FirebaseCollection.kuranDua)
+          .get();
+      for (final element in response.docs) {
+        books.add(BookModel.fromMap(element.data()));
+      }
+      // log('resBookData -> ${books[0].fikh}');
+      return books;
+
     } catch (e) {
       log('Error fetching book data: $e');
       throw ServerException(e.toString());
