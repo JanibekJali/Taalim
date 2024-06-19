@@ -6,6 +6,7 @@ import 'package:taalim/src/core/navigation/app_routes.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/cubit/bottom_nav_bar_cubit.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 import 'package:taalim/src/presentation/dua/cubit/dua_cubit.dart';
+import 'package:taalim/src/presentation/question-answer/cubit/question_answer_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ class Taalim extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => QuestionAnswerCubit()),
         BlocProvider(create: (context) => BooksCubit()),
         BlocProvider(create: (context) => DuaCubit()),
         BlocProvider(create: (context) => BottomNavBarCubit()),
