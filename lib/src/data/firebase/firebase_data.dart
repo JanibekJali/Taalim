@@ -61,7 +61,6 @@ class FirebaseData {
     }
   }
 
-
   static Future<List<QuestionAnswerModel>?>
       getQuestionAnswerDataFromFirebase() async {
     try {
@@ -73,6 +72,11 @@ class FirebaseData {
         questionAnswer.add(QuestionAnswerModel.fromMap(aalym.data()));
       }
       return questionAnswer;
+    } catch (e) {
+      log('Error fetching book data: $e');
+      throw ServerException(e.toString());
+    }
+  }
 
   static Future<List<BookModel>?> getKuranDuaDataFromFirebase() async {
     try {
@@ -86,7 +90,6 @@ class FirebaseData {
       }
       // log('resBookData -> ${books[0].fikh}');
       return books;
-
     } catch (e) {
       log('Error fetching book data: $e');
       throw ServerException(e.toString());

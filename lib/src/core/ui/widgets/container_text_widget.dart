@@ -10,6 +10,7 @@ class ContainerTextWidget extends StatelessWidget {
     required this.height,
     required this.text,
     this.color,
+    this.widgetChoice = false,
   });
 
   final double width;
@@ -17,6 +18,8 @@ class ContainerTextWidget extends StatelessWidget {
   final Color? color;
   final String text;
   final Function() onTap;
+
+  final bool widgetChoice;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -44,10 +47,27 @@ class ContainerTextWidget extends StatelessWidget {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2),
-                child: Text(
-                  text,
-                  style: AppTextStyle.blue18Bold,
-                ),
+                child: widgetChoice == true
+                    ? Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 18,
+                            child: ClipOval(
+                              child: Image.network(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrh_mwpzpuG8lPhZbfGB24XSSKFZG6yBEOkw&s',
+                              ),
+                            ),
+                          ),
+                          Text(
+                            text,
+                            style: AppTextStyle.blue18Bold,
+                          ),
+                        ],
+                      )
+                    : Text(
+                        text,
+                        style: AppTextStyle.blue18Bold,
+                      ),
               ),
             ),
           ),

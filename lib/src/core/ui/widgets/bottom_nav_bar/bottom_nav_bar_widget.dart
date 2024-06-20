@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/cubit/bottom_nav_bar_cubit.dart';
+import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
+import 'package:taalim/src/presentation/dua/cubit/dua_cubit.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
   const BottomNavBarWidget({Key? key}) : super(key: key);
@@ -20,9 +22,11 @@ class BottomNavBarWidget extends StatelessWidget {
             }
             if (value == 1) {
               Navigator.pushNamed(context, AppRoutesPath.books);
+              context.read<BooksCubit>().getBookData();
             }
             if (value == 2) {
               Navigator.pushNamed(context, AppRoutesPath.dua);
+              context.read<DuaCubit>().getDua();
             }
             // if(value == 3){
             //   Navigator.pushNamed(context, AppRoutesPath.dua);
