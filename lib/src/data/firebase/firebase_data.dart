@@ -30,7 +30,7 @@ class FirebaseData {
       final books = <BookModel>[];
       final response = await FirebaseFirestore.instance
           .collection(FirebaseCollection.books)
-          .where(FirebaseCollection.subHadis)
+          // .where(FirebaseCollection.subHadis)
           .get();
       for (final element in response.docs) {
         books.add(BookModel.fromMap(element.data()));
@@ -55,6 +55,22 @@ class FirebaseData {
         dualar.add(DuaModel.fromMap(dua.data()));
       }
       return dualar;
+    } catch (e) {
+      log('Error fetching book data: $e');
+      throw ServerException(e.toString());
+    }
+  }
+
+  static Future<List<DuaModel>?> getDuaSelectionDataFromFirebase() async {
+    try {
+      final duas = <DuaModel>[];
+      final response = await FirebaseFirestore.instance
+          .collection(FirebaseCollection.quranicDuas)
+          .get();
+      for (final element in response.docs) {
+        duas.add(DuaModel.fromMap(element.data()));
+      }
+      return duas;
     } catch (e) {
       log('Error fetching book data: $e');
       throw ServerException(e.toString());

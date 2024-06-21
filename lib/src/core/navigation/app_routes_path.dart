@@ -9,6 +9,8 @@ class AppRoutesPath {
   static const String bookSectionChoiceSection = '/bookSectionChoiceSection';
   static const String bookText = '/bookText';
   static const String dua = '/dua';
+  static const String duaSelectionView = '/duaSelectionView';
+  static const String duaTextView = '/duaTextView';
   static const String questionAnswer = '/questionAnswer';
   static const String namesOfAllah = '/namesOfAllah';
 }

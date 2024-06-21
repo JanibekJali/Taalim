@@ -5,6 +5,8 @@ import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/presentation/books/book_choice/book_choice_view.dart';
 import 'package:taalim/src/presentation/books/books_view.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
+import 'package:taalim/src/presentation/dua/dua_selection/dua_selection_view.dart';
+import 'package:taalim/src/presentation/dua/dua_text/dua_text_view.dart';
 import 'package:taalim/src/presentation/dua/duas_view.dart';
 import 'package:taalim/src/presentation/home/home_view.dart';
 import 'package:taalim/src/presentation/names-of-allah/names_of_allah_view.dart';
@@ -46,6 +48,20 @@ class AppRoutersFunction {
         return CupertinoPageRoute(
           builder: (_) {
             return const DuaView();
+          },
+          settings: settings,
+        );
+      case AppRoutesPath.duaSelectionView:
+        return CupertinoPageRoute(
+          builder: (_) {
+            return const DuaSelectionView();
+          },
+          settings: settings,
+        );
+      case AppRoutesPath.duaTextView:
+        return CupertinoPageRoute(
+          builder: (_) {
+            return const DuaTextView();
           },
           settings: settings,
         );

@@ -51,10 +51,39 @@ class DuaView extends StatelessWidget {
                       height: height,
                       text: state.duaModel![index].dua,
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutesPath.booksChoice,
-                        );
+                        if (index == 0) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaTextView);
+                        }
+                        if (index == 1) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
+                        if (index == 2) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
+                        if (index == 2) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
+                        if (index == 4) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
+                        if (index == 5) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
+                        if (index == 6) {
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
+                        if (index == 7) {
+                          context.read<DuaCubit>().getDuaSelection();
+                          Navigator.pushNamed(
+                              context, AppRoutesPath.duaSelectionView);
+                        }
                       },
                     );
                   },

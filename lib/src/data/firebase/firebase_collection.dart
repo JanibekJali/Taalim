@@ -1,6 +1,7 @@
 class FirebaseCollection {
   static const books = 'books';
   static const dualar = 'dualar';
+  static const quranicDuas = 'quranicDuas';
 
   static const aalym = 'aalym';
 

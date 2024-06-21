@@ -46,7 +46,7 @@ class BooksView extends StatelessWidget {
                     return ContainerTextWidget(
                       width: width,
                       height: height,
-                      text: state.bookModel![index].bookName,
+                      text: state.bookModel![index].title,
                       onTap: () {
                         Navigator.pushNamed(
                           context,

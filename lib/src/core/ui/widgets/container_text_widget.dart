@@ -11,6 +11,7 @@ class ContainerTextWidget extends StatelessWidget {
     required this.text,
     this.color,
     this.widgetChoice = false,
+    this.textStyle = AppTextStyle.blue18Bold,
   });
 
   final double width;
@@ -18,6 +19,7 @@ class ContainerTextWidget extends StatelessWidget {
   final Color? color;
   final String text;
   final Function() onTap;
+  final TextStyle textStyle;
 
   final bool widgetChoice;
   @override
@@ -60,13 +62,13 @@ class ContainerTextWidget extends StatelessWidget {
                           ),
                           Text(
                             text,
-                            style: AppTextStyle.blue18Bold,
+                            style: textStyle,
                           ),
                         ],
                       )
                     : Text(
                         text,
-                        style: AppTextStyle.blue18Bold,
+                        style: textStyle,
                       ),
               ),
             ),

@@ -1,19 +1,19 @@
 class BookModel {
-  final String bookName;
+  final String title;
 
   BookModel({
-    required this.bookName,
+    required this.title,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'bookName': bookName,
+      'title': title,
     };
   }
 
   factory BookModel.fromMap(Map<String, dynamic> map) {
     return BookModel(
-      bookName: map['bookName'] as String,
+      title: map['title'] as String,
     );
   }
 }
