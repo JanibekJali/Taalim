@@ -44,9 +44,9 @@ class HomeView extends StatelessWidget {
                   if (index == 0) {
                     context.read<BooksCubit>().getBookData();
                   }
-                  if (index == 1) {
-                    context.read<DuaCubit>().getDua();
-                  }
+                  // if (index == 1) {
+                  //   context.read<DuaCubit>().getDua();
+                  // }
                   if (index == 2) {
                     context.read<QuestionAnswerCubit>().getQuestionAnswer();
                   }

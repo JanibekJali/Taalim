@@ -41,7 +41,7 @@ class BookChoiceView extends StatelessWidget {
                   return ContainerTextWidget(
                     width: width,
                     height: height,
-                    text: state.bookModel![index].bookName,
+                    text: ' state.bookModel![index].bookName,',
                     onTap: () {
                       Navigator.pushNamed(
                         context,

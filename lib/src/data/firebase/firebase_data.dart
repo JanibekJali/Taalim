@@ -25,23 +25,24 @@ class FirebaseData {
   //     throw ServerException(e.toString());
   //   }
   // }
-  static Future<List<BookModel>?> getBookDataFromFirebase() async {
-    try {
-      final books = <BookModel>[];
-      final response = await FirebaseFirestore.instance
-          .collection(FirebaseCollection.books)
-          .where(FirebaseCollection.subHadis)
-          .get();
-      for (final element in response.docs) {
-        books.add(BookModel.fromMap(element.data()));
-      }
-      // log('resBookData -> ${books[0].fikh}');
-      return books;
-    } catch (e) {
-      log('Error fetching book data: $e');
-      throw ServerException(e.toString());
-    }
-  }
+
+  // static Future<List<BookModel>?> getBookDataFromFirebase() async {
+  //   try {
+  //     final books = <BookModel>[];
+  //     final response = await FirebaseFirestore.instance
+  //         .collection(FirebaseCollection.books)
+  //         // .where(FirebaseCollection.subHadis)
+  //         .get();
+  //     for (final element in response.docs) {
+  //       books.add(BookModel.fromMap(element.data()));
+  //     }
+  //     // log('resBookData -> ${books[0].fikh}');
+  //     return books;
+  //   } catch (e) {
+  //     log('Error fetching book data: $e');
+  //     throw ServerException(e.toString());
+  //   }
+  // }
 
   static Future<List<DuaModel>?> getDuaDataFromFirebase(
     String collection,
@@ -92,6 +93,54 @@ class FirebaseData {
       return books;
     } catch (e) {
       log('Error fetching book data: $e');
+      throw ServerException(e.toString());
+    }
+  }
+}
+
+class BooksRepository {
+  static Future<List<BookModel>?> getBookDataFromFirebase() async {
+    try {
+      final books = <BookModel>[];
+      final response =
+          await FirebaseFirestore.instance.collection('books').get();
+      log('response --> ${response.docs.length}');
+
+      for (final element in response.docs) {
+        final bookData = element.data();
+        log('data --> ${bookData}');
+
+        final chaptersQuerySnapshot = await FirebaseFirestore.instance
+            .collection('books')
+            .doc(element.id)
+            .collection('chapters')
+            .get();
+
+        final chapters = chaptersQuerySnapshot.docs
+            .map((chapterDoc) => chapterDoc['chapterText'] as String)
+            .toList();
+
+        final finalTextDoc = await FirebaseFirestore.instance
+            .collection('books')
+            .doc(element.id)
+            .collection('finalText')
+            .doc('finalText')
+            .get();
+
+        final finalText = finalTextDoc['text'] as String;
+
+        books.add(BookModel(
+          title: bookData['title'] as String,
+          chapters: chapters,
+          finalText: finalText,
+        ));
+      }
+      log('Fetched books: $books');
+      return books;
+    } catch (e) {
+      // if (kDebugMode) {
+      log('Error fetching book data: $e');
+      // }
       throw ServerException(e.toString());
     }
   }

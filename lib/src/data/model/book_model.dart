@@ -1,19 +1,47 @@
+// class BookModel {
+//   final String bookName;
+
+//   BookModel({
+//     required this.bookName,
+//   });
+
+//   Map<String, dynamic> toMap() {
+//     return <String, dynamic>{
+//       'bookName': bookName,
+//     };
+//   }
+
+//   factory BookModel.fromMap(Map<String, dynamic> map) {
+//     return BookModel(
+//       bookName: map['bookName'] as String,
+//     );
+//   }
+// }
+
 class BookModel {
-  final String bookName;
+  final String title;
+  final List<String> chapters;
+  final String finalText;
 
   BookModel({
-    required this.bookName,
+    required this.title,
+    required this.chapters,
+    required this.finalText,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'bookName': bookName,
+      'title': title,
+      'chapters': chapters,
+      'finalText': finalText,
     };
   }
 
   factory BookModel.fromMap(Map<String, dynamic> map) {
     return BookModel(
-      bookName: map['bookName'] as String,
+      title: map['title'] as String,
+      chapters: List<String>.from(map['chapters'] as List),
+      finalText: map['finalText'] as String,
     );
   }
 }
