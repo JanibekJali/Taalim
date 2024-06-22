@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/src/core/enums/fetch_status.dart';
@@ -15,54 +16,66 @@ class BooksView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
     return BlocBuilder<BooksCubit, BooksState>(
       builder: (context, state) {
-        if (state.fetchStatus == FetchStatus.loading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state.fetchStatus == FetchStatus.success &&
-            state.bookModel != null) {
-          return Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 100,
-              centerTitle: true,
-              title: const Text(
-                AppText.kitepter,
-                style: AppTextStyle.blue24Bold,
-                textAlign: TextAlign.center,
-              ),
+        return Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 100,
+            centerTitle: true,
+            title: Text(
+              AppText.kitepter,
+              style: AppTextStyle.blue24Bold,
+              textAlign: TextAlign.center,
             ),
-            body: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 30),
-                ),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemExtent: height * 0.1,
-                  itemCount: state.bookModel!.length,
-                  itemBuilder: (context, index) {
-                    return ContainerTextWidget(
-                      width: width,
-                      height: height,
-                      text: state.bookModel![index].title,
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutesPath.booksChoice,
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-            bottomNavigationBar: const BottomNavBarWidget(),
-          );
-        } else {
-          return const Center(child: Text('Maalymat Jok'));
-        }
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+          ),
+          body: Container(
+            child: () {
+              if (state.fetchStatus == FetchStatus.loading) {
+                log('Loading state');
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.fetchStatus == FetchStatus.success &&
+                  state.bookModel != null) {
+                log('Success state');
+                return Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 30),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemExtent: height * 0.1,
+                        itemCount: state.bookModel!.length,
+                        itemBuilder: (context, index) {
+                          return ContainerTextWidget(
+                            width: width,
+                            height: height,
+                            text: state.bookModel![index].title,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutesPath.booksChoice,
+                                arguments: state.bookModel![index],
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                log('Error state or no books');
+                return const Center(child: Text('Maalymat Jok'));
+              }
+            }(),
+          ),
+          bottomNavigationBar: const BottomNavBarWidget(),
+        );
       },
     );
   }

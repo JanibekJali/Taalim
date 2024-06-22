@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/src/core/ui/texts/app_text.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
+import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/data/local/list_names.dart';
 import 'package:taalim/src/data/local/list_of_view.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
@@ -42,7 +43,9 @@ class HomeView extends StatelessWidget {
                 text: ListNames.homeViewNames[index],
                 onTap: () {
                   if (index == 0) {
-                    context.read<BooksCubit>().getBookData();
+                    context
+                        .read<BooksCubit>()
+                        .getBookData(FirebaseCollection.books);
                   }
                   if (index == 1) {
                     context.read<DuaCubit>().getDua();
