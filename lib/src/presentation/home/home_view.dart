@@ -45,7 +45,7 @@ class HomeView extends StatelessWidget {
                   if (index == 0) {
                     context
                         .read<BooksCubit>()
-                        .getBookData(FirebaseCollection.books);
+                        .getData(FirebaseCollection.books);
                   }
                   if (index == 1) {
                     context.read<DuaCubit>().getDua();

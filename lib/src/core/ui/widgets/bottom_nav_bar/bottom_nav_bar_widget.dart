@@ -23,7 +23,7 @@ class BottomNavBarWidget extends StatelessWidget {
             }
             if (value == 1) {
               Navigator.pushNamed(context, AppRoutesPath.books);
-              context.read<BooksCubit>().getBookData(FirebaseCollection.books);
+              context.read<BooksCubit>().getData(FirebaseCollection.books);
             }
             if (value == 2) {
               Navigator.pushNamed(context, AppRoutesPath.dua);

@@ -40,7 +40,7 @@ class AppRoutersFunction {
       case AppRoutesPath.booksChoice:
         return CupertinoPageRoute(
           builder: (_) {
-            return const BookChoiceView();
+            return BookChoiceView();
           },
           settings: settings,
         );
