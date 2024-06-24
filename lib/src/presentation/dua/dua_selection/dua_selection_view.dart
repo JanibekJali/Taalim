@@ -7,6 +7,7 @@ import 'package:taalim/src/core/ui/theme/app_colors.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
+import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/presentation/dua/cubit/dua_cubit.dart';
 
 class DuaSelectionView extends StatelessWidget {
@@ -30,7 +31,7 @@ class DuaSelectionView extends StatelessWidget {
               centerTitle: true,
               leading: IconButton(
                 onPressed: () {
-                  context.read<DuaCubit>().getDua();
+                  context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
                   Navigator.pop(context);
                 },
                 icon: const Icon(Icons.arrow_back_ios),

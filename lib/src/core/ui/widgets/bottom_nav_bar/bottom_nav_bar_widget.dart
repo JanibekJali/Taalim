@@ -27,7 +27,7 @@ class BottomNavBarWidget extends StatelessWidget {
             }
             if (value == 2) {
               Navigator.pushNamed(context, AppRoutesPath.dua);
-              context.read<DuaCubit>().getDua();
+              context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
             }
             // if(value == 3){
             //   Navigator.pushNamed(context, AppRoutesPath.dua);

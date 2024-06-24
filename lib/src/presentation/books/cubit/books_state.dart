@@ -2,18 +2,16 @@ part of 'books_cubit.dart';
 
 class BooksState extends Equatable {
   const BooksState({
-    this.fetchStatus = FetchStatus.loading,
+    this.status = FetchStatus.loading,
     this.bookModel,
-    // this.appBarTitle = '',
   });
 
-  final FetchStatus fetchStatus;
+  final FetchStatus status;
   final List<BookModel>? bookModel;
-  // final String appBarTitle;
 
   @override
   List<Object?> get props => [
-        fetchStatus,
+        status,
         bookModel,
         // appBarTitle,
       ];
@@ -24,7 +22,7 @@ class BooksState extends Equatable {
     // String? appBarTitle,
   }) {
     return BooksState(
-      fetchStatus: fetchStatus ?? this.fetchStatus,
+      status: fetchStatus ?? this.status,
       bookModel: bookModel ?? this.bookModel,
       // appBarTitle: appBarTitle ?? this.appBarTitle,
     );

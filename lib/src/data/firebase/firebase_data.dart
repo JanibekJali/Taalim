@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:taalim/src/core/exception/server_exception.dart';
 import 'package:taalim/src/data/firebase/firebase_collection.dart';
@@ -25,32 +24,15 @@ class FirebaseData {
   }
 
   static Future<List<DuaModel>?> getDuaDataFromFirebase(
-    String collection,
-  ) async {
+      String collectionName) async {
     try {
       final dualar = <DuaModel>[];
       final response =
-          await FirebaseFirestore.instance.collection(collection).get();
+          await FirebaseFirestore.instance.collection(collectionName).get();
       for (var dua in response.docs) {
         dualar.add(DuaModel.fromMap(dua.data()));
       }
       return dualar;
-    } catch (e) {
-      log('Error fetching book data: $e');
-      throw ServerException(e.toString());
-    }
-  }
-
-  static Future<List<DuaModel>?> getDuaSelectionDataFromFirebase() async {
-    try {
-      final duas = <DuaModel>[];
-      final response = await FirebaseFirestore.instance
-          .collection(FirebaseCollection.quranicDuas)
-          .get();
-      for (final element in response.docs) {
-        duas.add(DuaModel.fromMap(element.data()));
-      }
-      return duas;
     } catch (e) {
       log('Error fetching book data: $e');
       throw ServerException(e.toString());

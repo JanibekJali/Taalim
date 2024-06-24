@@ -19,8 +19,6 @@ class BooksCubit extends Cubit<BooksState> {
           state.copyWith(
             fetchStatus: FetchStatus.success,
             bookModel: response,
-            // appBarTitle: response.first.appBarTitle ??
-            // 'Default Title',
           ),
         );
       } else {

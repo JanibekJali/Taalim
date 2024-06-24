@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/src/core/enums/fetch_status.dart';
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/texts/app_text.dart';
+import 'package:taalim/src/core/ui/theme/app_colors.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
+import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class BooksView extends StatelessWidget {
@@ -23,21 +25,30 @@ class BooksView extends StatelessWidget {
           appBar: AppBar(
             toolbarHeight: 100,
             centerTitle: true,
-            title: Text(
+            title: const Text(
               AppText.kitepter,
               style: AppTextStyle.blue24Bold,
               textAlign: TextAlign.center,
+            ),
+            leading: IconButton(
+              onPressed: () {
+                // context
+                //     .read<BooksCubit>()
+                //     .getBookData(FirebaseCollection.books);
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios),
             ),
             backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           ),
           body: Container(
             child: () {
-              if (state.fetchStatus == FetchStatus.loading) {
+              if (state.status == FetchStatus.loading) {
                 log('Loading state');
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state.fetchStatus == FetchStatus.success &&
+              } else if (state.status == FetchStatus.success &&
                   state.bookModel != null) {
                 log('Success state');
                 return Column(
@@ -56,6 +67,21 @@ class BooksView extends StatelessWidget {
                             height: height,
                             text: state.bookModel![index].title,
                             onTap: () {
+                              if (index == 0) {
+                                context
+                                    .read<BooksCubit>()
+                                    .getBookData(FirebaseCollection.muhtasar);
+                              }
+                              if (index == 1) {
+                                context
+                                    .read<BooksCubit>()
+                                    .getBookData(FirebaseCollection.hadis);
+                              }
+                              if (index == 2) {
+                                context
+                                    .read<BooksCubit>()
+                                    .getBookData(FirebaseCollection.siro);
+                              }
                               Navigator.pushNamed(
                                 context,
                                 AppRoutesPath.booksChoice,

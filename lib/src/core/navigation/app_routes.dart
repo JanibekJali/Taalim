@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/presentation/books/book_choice/book_choice_view.dart';
+import 'package:taalim/src/presentation/books/book_valume/book_valume_view.dart';
 import 'package:taalim/src/presentation/books/books_view.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 import 'package:taalim/src/presentation/dua/dua_selection/dua_selection_view.dart';
@@ -41,6 +42,13 @@ class AppRoutersFunction {
         return CupertinoPageRoute(
           builder: (_) {
             return const BookChoiceView();
+          },
+          settings: settings,
+        );
+      case AppRoutesPath.booksValume:
+        return CupertinoPageRoute(
+          builder: (_) {
+            return const BookValumeView();
           },
           settings: settings,
         );
