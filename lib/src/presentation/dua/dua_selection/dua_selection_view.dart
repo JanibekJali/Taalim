@@ -9,6 +9,7 @@ import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/bottom_nav_bar_widget.
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
 import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/presentation/dua/cubit/dua_cubit.dart';
+import 'package:taalim/src/presentation/dua/dua_text/cubit/dua_text_cubit.dart';
 
 class DuaSelectionView extends StatelessWidget {
   const DuaSelectionView({Key? key}) : super(key: key);
@@ -26,7 +27,9 @@ class DuaSelectionView extends StatelessWidget {
         } else if (state.status == FetchStatus.success &&
             state.duaModel != null) {
           return Scaffold(
+            backgroundColor: AppColors.white,
             appBar: AppBar(
+              backgroundColor: AppColors.white,
               toolbarHeight: 100,
               centerTitle: true,
               leading: IconButton(
@@ -59,9 +62,12 @@ class DuaSelectionView extends StatelessWidget {
                         text: state.duaModel![index].dua,
                         textStyle: AppTextStyle.white18Bold,
                         onTap: () {
+                          if (index == 0) {
+                            context.read<DuaTextCubit>().fetchDuaText();
+                          }
                           Navigator.pushNamed(
                             context,
-                            AppRoutesPath.booksChoice,
+                            AppRoutesPath.duaTextView,
                           );
                         },
                       );
