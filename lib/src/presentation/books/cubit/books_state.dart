@@ -1,30 +1,31 @@
 part of 'books_cubit.dart';
 
-class BooksState extends Equatable {
-  const BooksState({
-    this.status = FetchStatus.loading,
-    this.bookModel,
-  });
+abstract class BooksState {}
 
-  final FetchStatus status;
-  final List<BookModel>? bookModel;
+class BooksInitial extends BooksState {}
 
-  @override
-  List<Object?> get props => [
-        status,
-        bookModel,
-        // appBarTitle,
-      ];
+class BookLoading extends BooksState {}
 
-  BooksState copyWith({
-    FetchStatus? fetchStatus,
-    List<BookModel>? bookModel,
-    // String? appBarTitle,
-  }) {
-    return BooksState(
-      status: fetchStatus ?? this.status,
-      bookModel: bookModel ?? this.bookModel,
-      // appBarTitle: appBarTitle ?? this.appBarTitle,
-    );
-  }
+class BooksLoaded extends BooksState {
+  final List<BookModel> items;
+
+  BooksLoaded(this.items);
+}
+
+class NestedCollectionLoaded extends BooksState {
+  final List<BookModel> items;
+
+  NestedCollectionLoaded(this.items);
+}
+
+class DocumentLoaded extends BooksState {
+  final BookModel item;
+
+  DocumentLoaded(this.item);
+}
+
+class BookError extends BooksState {
+  final String error;
+
+  BookError(this.error);
 }

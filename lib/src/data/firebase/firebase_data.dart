@@ -7,22 +7,6 @@ import 'package:taalim/src/data/model/dua_model.dart';
 import 'package:taalim/src/data/model/question_answer_model.dart';
 
 class FirebaseData {
-  static Future<List<BookModel>?> getBookDataFromFirebase(
-      String collectionName) async {
-    try {
-      final books = <BookModel>[];
-      final response =
-          await FirebaseFirestore.instance.collection(collectionName).get();
-      for (final element in response.docs) {
-        books.add(BookModel.fromMap(element.data()));
-      }
-      return books;
-    } catch (e) {
-      log('Error fetching data from $collectionName: $e');
-      throw ServerException(e.toString());
-    }
-  }
-
   static Future<List<DuaModel>?> getDuaDataFromFirebase(
       String collectionName) async {
     try {
@@ -50,23 +34,6 @@ class FirebaseData {
         questionAnswer.add(QuestionAnswerModel.fromMap(aalym.data()));
       }
       return questionAnswer;
-    } catch (e) {
-      log('Error fetching book data: $e');
-      throw ServerException(e.toString());
-    }
-  }
-
-  static Future<List<BookModel>?> getKuranDuaDataFromFirebase() async {
-    try {
-      final books = <BookModel>[];
-      final response = await FirebaseFirestore.instance
-          .collection(FirebaseCollection.dualar)
-          .where(FirebaseCollection.kuranDua)
-          .get();
-      for (final element in response.docs) {
-        books.add(BookModel.fromMap(element.data()));
-      }
-      return books;
     } catch (e) {
       log('Error fetching book data: $e');
       throw ServerException(e.toString());

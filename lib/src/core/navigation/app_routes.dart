@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/presentation/books/book_choice/book_choice_view.dart';
-import 'package:taalim/src/presentation/books/book_valume/book_valume_view.dart';
 import 'package:taalim/src/presentation/books/books_view.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 import 'package:taalim/src/presentation/dua/dua_selection/dua_selection_view.dart';
@@ -19,39 +18,43 @@ class AppRoutersFunction {
     switch (settings.name) {
       case AppRoutesPath.main:
         return CupertinoPageRoute(
-          builder: (_) {
-            return const WelcomeView();
-          },
+          builder: (_) => const WelcomeView(),
           settings: settings,
         );
       case AppRoutesPath.home:
         return CupertinoPageRoute(
-          builder: (_) {
-            return const HomeView();
-          },
+          builder: (_) => const HomeView(),
           settings: settings,
         );
       case AppRoutesPath.books:
+        final booksArgs = settings.arguments as Map<String, String>;
         return CupertinoPageRoute(
-          builder: (_) {
-            return const BooksView();
-          },
+          builder: (_) => BooksView(title: booksArgs['title']!),
           settings: settings,
         );
-      case AppRoutesPath.booksChoice:
-        return CupertinoPageRoute(
-          builder: (_) {
-            return const BookChoiceView();
-          },
-          settings: settings,
-        );
-      case AppRoutesPath.booksValume:
-        return CupertinoPageRoute(
-          builder: (_) {
-            return const BookValumeView();
-          },
-          settings: settings,
-        );
+      // case AppRoutesPath.booksChoice:
+      //   final booksChoiceArgs = settings.arguments as Map<String, String>;
+      //   return CupertinoPageRoute(
+      //     builder: (_) => BookChoiceView(
+      //         bookId: booksChoiceArgs['bookId']!,
+      //         title: booksChoiceArgs['title']!),
+      //     settings: settings,
+      //   );
+
+      // case AppRoutesPath.bookText:
+      //   final bookTextArgs = settings.arguments as Map<String, String>;
+      //   return CupertinoPageRoute(
+      //     builder: (_) => BookTextView(
+      //         bookId: bookTextArgs['bookId']!,
+      //         bookChoiceId: bookTextArgs['bookChoiceId']!,
+      //         bookSectionId: bookTextArgs['bookSectionId']!,
+      //         bookSectionChoiceId: bookTextArgs['bookSectionChoiceId']!,
+      //         bookSectionChoiceSectionId:
+      //             bookTextArgs['bookSectionChoiceSectionId']!,
+      //         title: bookTextArgs['title']!),
+      //     settings: settings,
+      //   );
+
       case AppRoutesPath.dua:
         return CupertinoPageRoute(
           builder: (_) {

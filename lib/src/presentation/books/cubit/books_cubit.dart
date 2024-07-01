@@ -1,32 +1,49 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:taalim/src/core/enums/fetch_status.dart';
-import 'package:taalim/src/core/exception/server_exception.dart';
-import 'package:taalim/src/data/firebase/firebase_data.dart';
+import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/data/model/book_model.dart';
+import 'package:taalim/src/data/repositories/book_repo.dart';
 part 'books_state.dart';
 
 class BooksCubit extends Cubit<BooksState> {
-  BooksCubit() : super(const BooksState());
+  BooksCubit() : super(BooksInitial());
 
-  Future<void> getBookData(String collectionName) async {
+  Future<void> fetchBooks() async {
     try {
-      emit(state.copyWith(fetchStatus: FetchStatus.loading));
-      final response =
-          await FirebaseData.getBookDataFromFirebase(collectionName);
-      if (response != null && response.isNotEmpty) {
-        emit(
-          state.copyWith(
-            fetchStatus: FetchStatus.success,
-            bookModel: response,
-          ),
-        );
-      } else {
-        emit(state.copyWith(fetchStatus: FetchStatus.error));
-      }
+      emit(BookLoading());
+      List<BookModel> items =
+          await BookRepository.fetchCollection(FirebaseCollection.book);
+      log('Fetched books: ${items.map((e) => e.title).toList()}');
+      emit(BooksLoaded(items));
     } catch (e) {
-      emit(state.copyWith(fetchStatus: FetchStatus.error));
-      throw ServerException('$e');
+      log('Error fetching books: $e');
+      emit(BookError(e.toString()));
+    }
+  }
+
+  Future<void> fetchNestedCollection(String path) async {
+    try {
+      emit(BookLoading());
+      log('Fetching data from path: $path');
+      List<BookModel> items = await BookRepository.fetchCollection(path);
+      log('Fetched items: ${items.length}');
+      emit(NestedCollectionLoaded(items));
+    } catch (e) {
+      log('Error fetching nested collection from $path: $e');
+      emit(BookError(e.toString()));
+    }
+  }
+
+  Future<void> fetchDocument(String path) async {
+    try {
+      emit(BookLoading());
+      var doc = await BookRepository.fetchDocument(path);
+      log('Fetched document from path: $path');
+      emit(DocumentLoaded(doc));
+    } catch (e) {
+      log('Error fetching document from $path: $e');
+      emit(BookError(e.toString()));
     }
   }
 }

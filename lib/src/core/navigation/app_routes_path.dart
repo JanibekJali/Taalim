@@ -1,16 +1,20 @@
 class AppRoutesPath {
-  static const String main = '/';
-  static const String home = '/home';
-  static const String books = '/books';
-  static const String booksChoice = '/booksChoice';
-  static const String booksValume = '/booksValume';
-  static const String bookSection = '/bookSection';
-  static const String bookSectionChoice = '/bookSectionChoice';
-  static const String bookSectionChoiceSection = '/bookSectionChoiceSection';
-  static const String bookText = '/bookText';
-  static const String dua = '/dua';
-  static const String duaSelectionView = '/duaSelectionView';
-  static const String duaTextView = '/duaTextView';
-  static const String questionAnswer = '/questionAnswer';
-  static const String namesOfAllah = '/namesOfAllah';
+  static const main = '/';
+//home
+  static const home = '/home';
+//books
+  static const books = '/books';
+  static const booksChoice = '/booksChoice';
+  static const bookSection = '/bookSection';
+  static const bookSectionChoice = '/bookSectionChoice';
+  static const bookSectionChoiceSection = '/bookSectionChoiceSection';
+  static const bookText = '/bookText';
+// dua
+  static const dua = '/dua';
+  static const duaSelectionView = '/duaSelectionView';
+  static const duaTextView = '/duaTextView';
+// question-answer
+  static const questionAnswer = '/questionAnswer';
+// names of allah
+  static const namesOfAllah = '/namesOfAllah';
 }

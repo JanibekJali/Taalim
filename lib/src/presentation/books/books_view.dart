@@ -12,12 +12,15 @@ import 'package:taalim/src/data/firebase/firebase_collection.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class BooksView extends StatelessWidget {
-  const BooksView({Key? key}) : super(key: key);
+  final String title;
+  const BooksView({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final bookCubit = BlocProvider.of<BooksCubit>(context);
+    bookCubit.fetchBooks();
 
     return BlocBuilder<BooksCubit, BooksState>(
       builder: (context, state) {
@@ -25,8 +28,8 @@ class BooksView extends StatelessWidget {
           appBar: AppBar(
             toolbarHeight: 100,
             centerTitle: true,
-            title: const Text(
-              AppText.kitepter,
+            title: Text(
+              title,
               style: AppTextStyle.blue24Bold,
               textAlign: TextAlign.center,
             ),
@@ -43,13 +46,12 @@ class BooksView extends StatelessWidget {
           ),
           body: Container(
             child: () {
-              if (state.status == FetchStatus.loading) {
+              if (state is BookLoading) {
                 log('Loading state');
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state.status == FetchStatus.success &&
-                  state.bookModel != null) {
+              } else if (state is BooksLoaded) {
                 log('Success state');
                 return Column(
                   children: [
@@ -60,33 +62,39 @@ class BooksView extends StatelessWidget {
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemExtent: height * 0.1,
-                        itemCount: state.bookModel!.length,
+                        itemCount: state.items.length,
                         itemBuilder: (context, index) {
+                          final item = state.items[index];
                           return ContainerTextWidget(
                             width: width,
                             height: height,
-                            text: state.bookModel![index].title,
+                            text: item.title,
                             onTap: () {
-                              if (index == 0) {
-                                context
-                                    .read<BooksCubit>()
-                                    .getBookData(FirebaseCollection.muhtasar);
-                              }
-                              if (index == 1) {
-                                context
-                                    .read<BooksCubit>()
-                                    .getBookData(FirebaseCollection.hadis);
-                              }
-                              if (index == 2) {
-                                context
-                                    .read<BooksCubit>()
-                                    .getBookData(FirebaseCollection.siro);
-                              }
-                              Navigator.pushNamed(
-                                context,
-                                AppRoutesPath.booksChoice,
-                                arguments: state.bookModel![index],
-                              );
+                              // if (index == 0) {
+                              //   context
+                              //       .read<BooksCubit>()
+                              //       .getBookData(FirebaseCollection.muhtasar);
+                              // }
+                              // if (index == 1) {
+                              //   context
+                              //       .read<BooksCubit>()
+                              //       .getBookData(FirebaseCollection.hadis);
+                              // }
+                              // if (index == 2) {
+                              //   context
+                              //       .read<BooksCubit>()
+                              //       .getBookData(FirebaseCollection.siro);
+                              // }
+                              // Navigator.pushNamed(
+                              //   context,
+                              //   AppRoutesPath.booksChoice,
+                              //   arguments: state.bookModel![index],
+                              // );
+                              Navigator.pushNamed(context, '/bookChoice',
+                                  arguments: {
+                                    'bookId': item.id,
+                                    'title': item.title,
+                                  });
                             },
                           );
                         },
@@ -94,10 +102,10 @@ class BooksView extends StatelessWidget {
                     ),
                   ],
                 );
-              } else {
-                log('Error state or no books');
-                return const Center(child: Text('Maalymat Jok'));
+              } else if (state is BookError) {
+                return Center(child: Text('Error: ${state.error}'));
               }
+              return Container();
             }(),
           ),
           bottomNavigationBar: const BottomNavBarWidget(),

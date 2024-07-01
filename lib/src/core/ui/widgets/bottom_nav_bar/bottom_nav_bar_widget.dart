@@ -18,17 +18,17 @@ class BottomNavBarWidget extends StatelessWidget {
           selectedItemColor: Colors.red,
           // unselectedItemColor: AppColors.grayIcon,
           onTap: (value) {
-            if (value == 0) {
-              Navigator.pushNamed(context, AppRoutesPath.home);
-            }
-            if (value == 1) {
-              Navigator.pushNamed(context, AppRoutesPath.books);
-              context.read<BooksCubit>().getBookData(FirebaseCollection.books);
-            }
-            if (value == 2) {
-              Navigator.pushNamed(context, AppRoutesPath.dua);
-              context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
-            }
+            // if (value == 0) {
+            //   Navigator.pushNamed(context, AppRoutesPath.home);
+            // }
+            // if (value == 1) {
+            //   Navigator.pushNamed(context, AppRoutesPath.books);
+            //   context.read<BooksCubit>().getBookData(FirebaseCollection.books);
+            // }
+            // if (value == 2) {
+            //   Navigator.pushNamed(context, AppRoutesPath.dua);
+            //   context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
+            // }
             // if(value == 3){
             //   Navigator.pushNamed(context, AppRoutesPath.dua);
             // }

@@ -1,5 +1,5 @@
 class FirebaseCollection {
-  static const books = 'books';
+  static const book = 'book';
   static const fikh = 'fikh';
   static const hadis = 'hadis';
   static const siro = 'siro';

@@ -42,17 +42,17 @@ class HomeView extends StatelessWidget {
                 height: height,
                 text: ListNames.homeViewNames[index],
                 onTap: () {
-                  if (index == 0) {
-                    context
-                        .read<BooksCubit>()
-                        .getBookData(FirebaseCollection.books);
-                  }
-                  if (index == 1) {
-                    context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
-                  }
-                  if (index == 2) {
-                    context.read<QuestionAnswerCubit>().getQuestionAnswer();
-                  }
+                  // if (index == 0) {
+                  //   context
+                  //       .read<BooksCubit>()
+                  //       .getBookData(FirebaseCollection.books);
+                  // }
+                  // if (index == 1) {
+                  //   context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
+                  // }
+                  // if (index == 2) {
+                  //   context.read<QuestionAnswerCubit>().getQuestionAnswer();
+                  // }
                   Navigator.pushNamed(
                     context,
                     ListViewRoutes.homeViewRoutes[index],
