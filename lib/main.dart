@@ -37,15 +37,36 @@ class Taalim extends StatelessWidget {
         BlocProvider(create: (context) => BottomNavBarCubit()),
         BlocProvider(create: (context) => DuaTextCubit()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRoutersFunction.onGenerateRoute,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.iOS: NoAnimationTransitionBuilder(),
+            TargetPlatform.android: NoAnimationTransitionBuilder(),
+            // Add other platforms if needed
+          }),
+        ),
 
         // title: 'University',
         //       theme: getAppTheme(),
         //       onGenerateRoute: AppRoutersFunc.onGenerateRoute,
       ),
     );
+  }
+}
+
+class NoAnimationTransitionBuilder extends PageTransitionsBuilder {
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return child; // No animation
   }
 }
   //// don't call !!!

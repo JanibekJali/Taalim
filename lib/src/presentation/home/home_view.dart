@@ -37,26 +37,25 @@ class HomeView extends StatelessWidget {
             itemExtent: height * 0.1,
             itemCount: ListNames.homeViewNames.length,
             itemBuilder: (context, index) {
+              String displayName = ListNames.homeViewNames[index];
+              String routeName = ListViewRoutes.homeViewRoutes[index];
               return ContainerTextWidget(
                 width: width,
                 height: height,
                 text: ListNames.homeViewNames[index],
                 onTap: () {
-                  // if (index == 0) {
-                  //   context
-                  //       .read<BooksCubit>()
-                  //       .getBookData(FirebaseCollection.books);
-                  // }
-                  // if (index == 1) {
-                  //   context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
-                  // }
-                  // if (index == 2) {
-                  //   context.read<QuestionAnswerCubit>().getQuestionAnswer();
-                  // }
-                  Navigator.pushNamed(
-                    context,
-                    ListViewRoutes.homeViewRoutes[index],
-                  );
+                  if (index == 0) {
+                    context.read<BooksCubit>().fetchBooks();
+                  }
+                  if (index == 1) {
+                    context.read<DuaCubit>().getDua(FirebaseCollection.dualar);
+                  }
+                  if (index == 2) {
+                    context.read<QuestionAnswerCubit>().getQuestionAnswer();
+                  }
+
+                  Navigator.pushNamed(context, routeName,
+                      arguments: {'title': displayName});
                 },
               );
             },

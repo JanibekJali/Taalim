@@ -7,9 +7,4 @@ class ListNames {
     AppText.surooJoop,
     AppText.ysym,
   ];
-  static const bookViewNames = [
-    AppText.fikh,
-    AppText.hadis,
-    AppText.siro,
-  ];
 }

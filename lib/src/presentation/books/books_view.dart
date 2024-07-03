@@ -1,14 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taalim/src/core/enums/fetch_status.dart';
-import 'package:taalim/src/core/navigation/app_routes_path.dart';
-import 'package:taalim/src/core/ui/texts/app_text.dart';
-import 'package:taalim/src/core/ui/theme/app_colors.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
-import 'package:taalim/src/data/firebase/firebase_collection.dart';
+import 'package:taalim/src/data/local/list_of_view.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class BooksView extends StatelessWidget {
@@ -21,7 +17,6 @@ class BooksView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final bookCubit = BlocProvider.of<BooksCubit>(context);
     bookCubit.fetchBooks();
-
     return BlocBuilder<BooksCubit, BooksState>(
       builder: (context, state) {
         return Scaffold(
@@ -47,12 +42,10 @@ class BooksView extends StatelessWidget {
           body: Container(
             child: () {
               if (state is BookLoading) {
-                log('Loading state');
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               } else if (state is BooksLoaded) {
-                log('Success state');
                 return Column(
                   children: [
                     const Padding(
@@ -64,6 +57,9 @@ class BooksView extends StatelessWidget {
                         itemExtent: height * 0.1,
                         itemCount: state.items.length,
                         itemBuilder: (context, index) {
+                          // String displayName = ListNames.homeViewNames[index];
+                          String routeName =
+                              ListViewRoutes.bookViewListindex[index];
                           final item = state.items[index];
                           return ContainerTextWidget(
                             width: width,
@@ -90,7 +86,10 @@ class BooksView extends StatelessWidget {
                               //   AppRoutesPath.booksChoice,
                               //   arguments: state.bookModel![index],
                               // );
-                              Navigator.pushNamed(context, '/bookChoice',
+                              context
+                                  .read<BooksCubit>()
+                                  .fetchNestedCollection('book/book_choice');
+                              Navigator.pushNamed(context, routeName,
                                   arguments: {
                                     'bookId': item.id,
                                     'title': item.title,
