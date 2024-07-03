@@ -86,9 +86,7 @@ class BooksView extends StatelessWidget {
                               //   AppRoutesPath.booksChoice,
                               //   arguments: state.bookModel![index],
                               // );
-                              context
-                                  .read<BooksCubit>()
-                                  .fetchNestedCollection('book/book_choice');
+
                               Navigator.pushNamed(context, routeName,
                                   arguments: {
                                     'bookId': item.id,
