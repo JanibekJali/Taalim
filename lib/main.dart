@@ -1,16 +1,13 @@
-import 'dart:developer';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taalim/firebase_options.dart';
 import 'package:taalim/src/core/navigation/app_routes.dart';
+import 'package:taalim/src/core/ui/bloc/share/cubit/floating_action_botton_cubit.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/cubit/bottom_nav_bar_cubit.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 import 'package:taalim/src/presentation/dua/cubit/dua_cubit.dart';
 import 'package:taalim/src/presentation/dua/dua_text/cubit/dua_text_cubit.dart';
-import 'package:taalim/src/presentation/dua/dua_text/dua_text_view.dart';
 import 'package:taalim/src/presentation/question-answer/cubit/question_answer_cubit.dart';
 
 void main() async {
@@ -36,6 +33,7 @@ class Taalim extends StatelessWidget {
         BlocProvider(create: (context) => DuaCubit()),
         BlocProvider(create: (context) => BottomNavBarCubit()),
         BlocProvider(create: (context) => DuaTextCubit()),
+        BlocProvider(create: (context) => FloatingActionBottonCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

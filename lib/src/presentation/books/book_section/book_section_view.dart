@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
@@ -81,11 +82,14 @@ class BookSectionView extends StatelessWidget {
                               //       .read<BooksCubit>()
                               //       .getBookData(FirebaseCollection.hadis);
                               // }
-                              // Navigator.pushNamed(
-                              //   context,
-                              //   AppRoutesPath.booksValume,
-                              //   arguments: state.bookModel![index],
-                              // );
+                              Navigator.pushNamed(
+                                  context, AppRoutesPath.bookSectionChoice,
+                                  arguments: {
+                                    'bookId': bookId,
+                                    'bookChoiceId': bookChoiceId,
+                                    'bookSectionId': item.id,
+                                    'title': item.title,
+                                  });
                             },
                           );
                         },
