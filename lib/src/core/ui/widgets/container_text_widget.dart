@@ -67,6 +67,7 @@ class ContainerTextWidget extends StatelessWidget {
                         ],
                       )
                     : Text(
+                        textAlign: TextAlign.center,
                         text,
                         style: textStyle,
                       ),

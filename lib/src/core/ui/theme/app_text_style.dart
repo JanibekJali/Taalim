@@ -21,6 +21,12 @@ class AppTextStyle {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.bold,
   );
+  static const blue16Bold = TextStyle(
+    color: Color(0xFF0099FF),
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.bold,
+  );
   static const black20Bold = TextStyle(
     color: AppColors.black,
     fontSize: 20,

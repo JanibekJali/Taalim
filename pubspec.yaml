@@ -32,6 +32,8 @@ dependencies:
   audioplayers: ^6.0.0
   flutter_bloc: ^8.1.6
   share_plus: ^9.0.0
+  pdf: ^3.11.1
+  path_provider: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +52,13 @@ flutter:
     - family: NunitoSans
       fonts:
         - asset: assets/fonts/NunitoSans_10pt-Bold.ttf
+    - family: Noto Sans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+    - family: Noto Naskh Arabic
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

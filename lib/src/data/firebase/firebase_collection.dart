@@ -6,6 +6,7 @@ class FirebaseCollection {
   static const muhtasar = 'muhtasar';
 
   static const dualar = 'dualar';
+  static const duaSelection = 'dua_selection';
   static const quranicDuas = 'quranicDuas';
 
   static const aalym = 'aalym';

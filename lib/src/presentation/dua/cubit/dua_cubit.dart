@@ -1,29 +1,31 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:taalim/src/core/enums/fetch_status.dart';
-import 'package:taalim/src/core/exception/server_exception.dart';
-import 'package:taalim/src/data/firebase/firebase_collection.dart';
-import 'package:taalim/src/data/firebase/firebase_data.dart';
 import 'package:taalim/src/data/model/dua_model.dart';
+import 'package:taalim/src/data/repositories/dua_repo.dart';
 
 part 'dua_state.dart';
 
 class DuaCubit extends Cubit<DuaState> {
-  DuaCubit() : super(const DuaState());
-  Future getDua(String collectionName) async {
+  final DuaRepo repository;
+
+  DuaCubit(this.repository) : super(DuaInitial());
+
+  Future<void> getDua() async {
     try {
-      emit(state.copyWith(status: FetchStatus.loading));
-      final response =
-          await FirebaseData.getDuaDataFromFirebase(collectionName);
-      if (response != null) {
-        emit(state.copyWith(status: FetchStatus.success, duaModel: response));
-      } else {
-        emit(
-          state.copyWith(status: FetchStatus.error),
-        );
-      }
+      emit(DuaLoading());
+      final numbers = await repository.fetchDua();
+      emit(DuaLoaded(numbers));
     } catch (e) {
-      throw ServerException('$e');
+      emit(DuaError(e.toString()));
+    }
+  }
+
+  Future<void> getDuaSelection(String parentKey) async {
+    try {
+      emit(DuaLoading());
+      final subNumbers = await repository.fetchDuaSelection(parentKey);
+      emit(DuaLoaded(subNumbers));
+    } catch (e) {
+      emit(DuaError(e.toString()));
     }
   }
 }

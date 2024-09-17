@@ -1,19 +1,21 @@
 part of 'dua_cubit.dart';
 
-class DuaState extends Equatable {
-  const DuaState({
-    this.status = FetchStatus.loading,
-    this.duaModel,
-  });
-  final List<DuaModel>? duaModel;
-  final FetchStatus status;
+// @immutable
 
-  @override
-  List<Object?> get props => [status, duaModel];
-  DuaState copyWith({FetchStatus? status, List<DuaModel>? duaModel}) {
-    return DuaState(
-      status: status ?? this.status,
-      duaModel: duaModel ?? this.duaModel,
-    );
-  }
+abstract class DuaState {}
+
+class DuaInitial extends DuaState {}
+
+class DuaLoading extends DuaState {}
+
+class DuaLoaded extends DuaState {
+  final List<DuaModel> duaIndex;
+
+  DuaLoaded(this.duaIndex);
+}
+
+class DuaError extends DuaState {
+  final String error;
+
+  DuaError(this.error);
 }

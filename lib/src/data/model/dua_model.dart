@@ -1,49 +1,42 @@
 class DuaModel {
-  final String dua;
+  final String id;
+  final String? title;
+  final String? arabicText;
+  final String? kyrgyzText;
+  final String? transcription;
+  final String? audio;
 
-  DuaModel({required this.dua});
+  DuaModel({
+    required this.id,
+    this.title,
+    this.arabicText,
+    this.kyrgyzText,
+    this.transcription,
+    this.audio,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'dua': dua,
+      'id': id,
+      'title': title,
+      'arabicText': arabicText,
+      'kyrgyzText': kyrgyzText,
+      'transcription': transcription,
+      'audio': audio,
     };
   }
 
   factory DuaModel.fromMap(Map<String, dynamic> map) {
     return DuaModel(
-      dua: map['dua'] as String,
-    );
-  }
-}
-
-class DuaTextModel {
-  final String arabicText;
-  final String kyrgyzText;
-  final String transcriptionText;
-  final String audio;
-
-  DuaTextModel({
-    required this.arabicText,
-    required this.kyrgyzText,
-    required this.transcriptionText,
-    required this.audio,
-  });
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'arabicText': arabicText,
-      'kyrgyzText': kyrgyzText,
-      'transcriptionText': transcriptionText,
-      'audio': audio,
-    };
-  }
-
-  factory DuaTextModel.fromMap(Map<String, dynamic> map) {
-    return DuaTextModel(
-      arabicText: map['arabicText'] as String,
-      kyrgyzText: map['kyrgyzText'] as String,
-      transcriptionText: map['transcriptionText'] as String,
-      audio: map['audio'] as String,
+      id: map['id'] as String,
+      title: map['title'] != null ? map['title'] as String : null,
+      arabicText:
+          map['arabicText'] != null ? map['arabicText'] as String : null,
+      kyrgyzText:
+          map['kyrgyzText'] != null ? map['kyrgyzText'] as String : null,
+      transcription:
+          map['transcription'] != null ? map['transcription'] as String : null,
+      audio: map['audio'] != null ? map['audio'] as String : null,
     );
   }
 }

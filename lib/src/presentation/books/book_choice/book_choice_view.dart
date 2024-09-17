@@ -1,15 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taalim/src/core/enums/fetch_status.dart';
 import 'package:taalim/src/core/navigation/app_routes_path.dart';
 import 'package:taalim/src/core/ui/theme/app_text_style.dart';
 import 'package:taalim/src/core/ui/widgets/bottom_nav_bar/bottom_nav_bar_widget.dart';
 import 'package:taalim/src/core/ui/widgets/container_text_widget.dart';
-import 'package:taalim/src/data/firebase/firebase_collection.dart';
-import 'package:taalim/src/data/local/list_of_view.dart';
-import 'package:taalim/src/data/model/book_model.dart';
 import 'package:taalim/src/presentation/books/cubit/books_cubit.dart';
 
 class BookChoiceView extends StatelessWidget {

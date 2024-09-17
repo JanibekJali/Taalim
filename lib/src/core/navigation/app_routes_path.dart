@@ -12,7 +12,7 @@ class AppRoutesPath {
 // dua
   static const dua = '/dua';
   static const duaSelectionView = '/duaSelectionView';
-  static const duaTextView = '/duaTextView';
+  static const duaDetailView = '/duaDetailView';
 // question-answer
   static const questionAnswer = '/questionAnswer';
 // names of allah
